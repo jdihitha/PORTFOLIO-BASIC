@@ -23,17 +23,17 @@ export const Footer: React.FC = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="bg-[#090B10] border-t border-white/[0.08] py-14 text-[#F8FAFC]"
+      className="bg-[#F4EFEB] border-t border-[#781D29]/15 py-14 text-[#2D181C]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/[0.08]">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-[#781D29]/10">
           
           {/* Identity */}
           <div className="text-center md:text-left space-y-1">
-            <h4 className="text-lg font-black tracking-tight text-white uppercase">
+            <h4 className="text-lg font-black tracking-tight text-[#2D181C] uppercase">
               DIHITHA JASTI
             </h4>
-            <p className="text-xs font-semibold text-[#94A3B8]">
+            <p className="text-xs font-bold text-[#781D29]">
               Third-Year B.Tech Student • Developer • Builder
             </p>
           </div>
@@ -46,7 +46,7 @@ export const Footer: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 rounded-full bg-[#171C2E] border border-white/[0.1] text-white flex items-center justify-center hover:bg-white hover:text-[#090B10] transition-all shadow-md"
+              className="w-10 h-10 rounded-full bg-[#FFFFFF] border border-[#781D29]/20 text-[#2D181C] flex items-center justify-center hover:bg-[#781D29] hover:text-white hover:border-[#781D29] transition-all shadow-xs"
               aria-label="GitHub Profile"
             >
               <Github className="w-4 h-4" />
@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 rounded-full bg-[#171C2E] border border-white/[0.1] text-white flex items-center justify-center hover:bg-[#3B82F6] hover:text-white hover:border-transparent transition-all shadow-md"
+              className="w-10 h-10 rounded-full bg-[#FFFFFF] border border-[#781D29]/20 text-[#2D181C] flex items-center justify-center hover:bg-[#781D29] hover:text-white hover:border-[#781D29] transition-all shadow-xs"
               aria-label="LinkedIn Profile"
             >
               <Linkedin className="w-4 h-4" />
@@ -69,13 +69,13 @@ export const Footer: React.FC = () => {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleCopyEmail}
-              className="px-4 h-10 rounded-full bg-[#171C2E] border border-white/[0.1] text-white flex items-center gap-2 text-xs font-mono font-semibold hover:bg-[#3B82F6] hover:border-transparent transition-all shadow-md"
+              className="px-4 h-10 rounded-full bg-[#FFFFFF] border border-[#781D29]/20 text-[#2D181C] flex items-center gap-2 text-xs font-mono font-bold hover:bg-[#781D29] hover:text-white hover:border-[#781D29] transition-all shadow-xs"
               title="Copy Email Address"
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-[#34D399]" />
-                  <span className="text-[#34D399] font-bold">Copied ✓</span>
+                  <Check className="w-3.5 h-3.5 text-[#10B981]" />
+                  <span className="text-[#10B981] font-bold">Copied ✓</span>
                 </>
               ) : (
                 <>
@@ -92,16 +92,16 @@ export const Footer: React.FC = () => {
             onClick={scrollToTop}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#94A3B8] hover:text-white transition-colors group"
+            className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#6E5D61] hover:text-[#781D29] transition-colors group"
           >
             <span>BACK TO TOP</span>
-            <ArrowUp className="w-4 h-4 text-[#60A5FA] group-hover:-translate-y-1 transition-transform" />
+            <ArrowUp className="w-4 h-4 text-[#781D29] group-hover:-translate-y-1 transition-transform" />
           </motion.button>
         </div>
 
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#94A3B8] gap-3">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#8A777A] gap-3">
           <span>
-            Designed with precision & craftsmanship · Bold High-Contrast Theme
+            Crafted with precision · Maroon & Light Theme
           </span>
           <span>
             © {new Date().getFullYear()} Dihitha Jasti. All rights reserved.

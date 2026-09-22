@@ -37,7 +37,7 @@ export default function App() {
   }, []);
 
   return (
-    <div id="portfolio-app-root" className="min-h-screen bg-[#090B10] text-[#F8FAFC] flex flex-col selection:bg-[#3B82F6] selection:text-white font-sans antialiased relative overflow-x-hidden">
+    <div id="portfolio-app-root" className="min-h-screen bg-[#FBF8F6] text-[#2D181C] flex flex-col selection:bg-[#781D29] selection:text-white font-sans antialiased relative overflow-x-hidden">
       {/* Sticky Top Navigation */}
       <Navbar activeSection={activeSection} />
 
@@ -57,4 +57,3 @@ export default function App() {
     </div>
   );
 }
-

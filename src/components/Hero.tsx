@@ -1,50 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowUpRight, Sparkles, Code2, Compass, Layers, Terminal, Cpu } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 export const Hero: React.FC = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setMousePosition({ x, y });
+  };
+
+  const handleMouseLeave = () => {
+    setMousePosition({ x: 0, y: 0 });
+  };
+
+  const nameLetters = "DIHITHA JASTI".split("");
+
   return (
     <section
       id="hero"
-      className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 lg:pt-44 lg:pb-32 overflow-hidden border-b border-white/[0.08]"
+      className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 lg:pt-44 lg:pb-32 overflow-hidden border-b border-[#781D29]/10 bg-[#FBF8F6]"
     >
-      {/* Animated glowing orbs for bold ambiance */}
+      {/* Heavy Section Animation: Floating Morphing Maroon & Rose Orbs */}
+      <motion.div
+        animate={{
+          scale: [1, 1.25, 0.95, 1.15, 1],
+          x: [0, 35, -20, 15, 0],
+          y: [0, -30, 20, -10, 0],
+          opacity: [0.3, 0.5, 0.35, 0.45, 0.3],
+        }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute -top-10 right-10 w-[480px] h-[480px] rounded-full bg-gradient-to-br from-[#781D29]/20 via-[#C0394B]/15 to-transparent blur-[120px] pointer-events-none"
+      />
       <motion.div
         animate={{
           scale: [1, 1.2, 1],
-          x: [0, 25, 0],
-          y: [0, -20, 0],
-          opacity: [0.35, 0.55, 0.35],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-12 right-10 w-96 h-96 rounded-full bg-[#3B82F6]/25 blur-[120px] pointer-events-none"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.15, 1],
-          x: [0, -20, 0],
-          y: [0, 25, 0],
+          x: [0, -30, 0],
+          y: [0, 35, 0],
           opacity: [0.25, 0.45, 0.25],
         }}
-        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="absolute -bottom-10 left-10 w-96 h-96 rounded-full bg-[#6366F1]/20 blur-[130px] pointer-events-none"
+        transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+        className="absolute -bottom-10 -left-10 w-[420px] h-[420px] rounded-full bg-gradient-to-tr from-[#8D1B2D]/18 via-[#F28482]/15 to-transparent blur-[130px] pointer-events-none"
       />
       <motion.div
         animate={{
-          scale: [1, 1.25, 1],
-          opacity: [0.15, 0.3, 0.15],
+          rotate: [0, 360],
+          scale: [1, 1.08, 1],
         }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        className="absolute top-1/2 left-1/3 w-80 h-80 rounded-full bg-[#38BDF8]/15 blur-[140px] pointer-events-none"
+        transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full border border-dashed border-[#781D29]/10 pointer-events-none"
       />
 
-      {/* Subtle grid line overlay */}
+      {/* Subtle fine dot texture overlay */}
       <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 opacity-[0.035] pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(#FFFFFF 1px, transparent 1px)',
-          backgroundSize: '24px 24px'
+          backgroundImage: 'radial-gradient(#781D29 1.5px, transparent 1.5px)',
+          backgroundSize: '28px 28px'
         }}
       />
 
@@ -54,62 +69,86 @@ export const Hero: React.FC = () => {
           {/* Left Column: Bold Typography & Confident Voice */}
           <div className="lg:col-span-7 flex flex-col space-y-6 text-left">
             
-            {/* Top Status Pill with Animated Beacon */}
+            {/* Top Status Pill with Animated Maroon Beacon */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              whileHover={{ scale: 1.03 }}
-              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#121624] border border-blue-500/30 text-[#F8FAFC] text-xs font-semibold w-fit shadow-[0_0_20px_rgba(59,130,246,0.2)] cursor-default"
+              initial={{ opacity: 0, scale: 0.85, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 22 }}
+              whileHover={{ scale: 1.04, y: -2 }}
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#FFFFFF] border border-[#781D29]/20 text-[#2D181C] text-xs font-semibold w-fit shadow-[0_4px_20px_rgba(120,29,41,0.08)] cursor-default"
             >
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#3B82F6] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#3B82F6]"></span>
+              <span className="relative flex h-3 w-3">
+                <motion.span
+                  animate={{ scale: [1, 2.4, 1], opacity: [0.8, 0, 0.8] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
+                  className="absolute inline-flex h-full w-full rounded-full bg-[#781D29]"
+                />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#781D29]"></span>
               </span>
-              <span className="tracking-wider font-mono text-[#60A5FA]">B.TECH CS '26</span>
-              <span className="text-white/20">|</span>
-              <span className="text-[#94A3B8] font-medium">Summer '25/'26 Internships</span>
+              <span className="tracking-wider font-mono text-[#781D29] font-bold">B.TECH CS '26</span>
+              <span className="text-[#781D29]/30">|</span>
+              <span className="text-[#6E5D61] font-medium">Summer '25/'26 Opportunities</span>
             </motion.div>
 
-            {/* Editorial Greeting & Bold Name */}
+            {/* Editorial Greeting & Animated Letter Stagger */}
             <div className="space-y-2">
               <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -25 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-lg sm:text-xl font-medium text-[#94A3B8] tracking-tight flex items-center gap-2"
+                className="text-lg sm:text-xl font-semibold text-[#781D29] tracking-tight flex items-center gap-2"
               >
                 <span>Hi, I'm</span>
                 <motion.span
-                  animate={{ rotate: [0, 14, -8, 14, 0] }}
-                  transition={{ duration: 1.8, repeat: Infinity, repeatDelay: 3 }}
+                  animate={{ rotate: [0, 18, -10, 18, 0] }}
+                  transition={{ duration: 1.6, repeat: Infinity, repeatDelay: 2.5 }}
                   className="inline-block origin-bottom-right"
                 >
                   👋
                 </motion.span>
               </motion.p>
-              <motion.h1
+
+              {/* Dynamic Staggered Letter Entrance for "DIHITHA JASTI" */}
+              <h1
                 id="hero-person-name"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.4rem] font-black tracking-tight text-white leading-[0.92] uppercase"
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-tight text-[#2D181C] leading-[0.92] uppercase flex flex-wrap"
+                aria-label="DIHITHA JASTI"
               >
-                DIHITHA JASTI
-              </motion.h1>
+                {nameLetters.map((char, index) => (
+                  <motion.span
+                    key={index}
+                    initial={{ opacity: 0, y: 35, rotateZ: 5 }}
+                    animate={{ opacity: 1, y: 0, rotateZ: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.15 + index * 0.03,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    whileHover={{
+                      scale: 1.15,
+                      color: '#781D29',
+                      y: -4,
+                      transition: { duration: 0.15 },
+                    }}
+                    className={`inline-block cursor-default select-none ${char === " " ? "mr-4 sm:mr-6" : ""}`}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </h1>
             </div>
 
             {/* Sub-headline / Role Tagline */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.22 }}
+              transition={{ duration: 0.5, delay: 0.35 }}
               className="space-y-1 pt-1"
             >
-              <p className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#60A5FA] via-[#93C5FD] to-[#A5B4FC] bg-clip-text text-transparent tracking-tight">
+              <p className="text-xl sm:text-2xl font-extrabold bg-gradient-to-r from-[#781D29] via-[#8D1B2D] to-[#C0394B] bg-clip-text text-transparent tracking-tight">
                 Third-Year B.Tech Student
               </p>
-              <p className="text-base sm:text-lg font-medium text-[#94A3B8] tracking-tight">
+              <p className="text-base sm:text-lg font-semibold text-[#6E5D61] tracking-tight">
                 Developer • Builder • Curious Learner
               </p>
             </motion.div>
@@ -117,28 +156,28 @@ export const Hero: React.FC = () => {
             {/* Natural Short Intro */}
             <motion.p
               id="hero-introduction-text"
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.28 }}
-              className="text-base sm:text-lg text-[#CBD5E1] max-w-2xl leading-relaxed font-normal"
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-base sm:text-lg text-[#4A3B3E] max-w-2xl leading-relaxed font-normal"
             >
               "I enjoy turning ideas into practical digital products while continuously learning through projects, problem solving and experimentation."
             </motion.p>
 
-            {/* Call to Actions with tactile motion and bold glows */}
+            {/* Call to Actions with tactile motion and rich maroon glows */}
             <motion.div
               id="hero-actions-container"
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.34 }}
+              transition={{ duration: 0.5, delay: 0.48 }}
               className="flex flex-wrap items-center gap-4 pt-2"
             >
               <motion.a
                 id="hero-cta-explore-work"
                 href="#projects"
-                whileHover={{ scale: 1.04, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#2563EB] text-white font-bold text-xs sm:text-sm shadow-[0_0_25px_rgba(59,130,246,0.4)] hover:shadow-[0_0_35px_rgba(59,130,246,0.6)] transition-all duration-200 tracking-wider uppercase border border-blue-400/40"
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.96 }}
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-gradient-to-r from-[#781D29] via-[#8D1B2D] to-[#5C141E] text-white font-bold text-xs sm:text-sm shadow-[0_8px_25px_rgba(120,29,41,0.35)] hover:shadow-[0_12px_35px_rgba(120,29,41,0.5)] transition-all duration-200 tracking-wider uppercase border border-[#C0394B]/40"
               >
                 <span>EXPLORE MY WORK</span>
                 <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
@@ -147,131 +186,147 @@ export const Hero: React.FC = () => {
               <motion.a
                 id="hero-cta-lets-connect"
                 href="#contact"
-                whileHover={{ scale: 1.04, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-[#121624] text-white border border-white/[0.15] font-bold text-xs sm:text-sm hover:bg-[#181E32] hover:border-blue-400/50 transition-all duration-200 tracking-wider uppercase shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.2)]"
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.96 }}
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-[#FFFFFF] text-[#781D29] border-2 border-[#781D29]/30 font-bold text-xs sm:text-sm hover:bg-[#FDF2F4] hover:border-[#781D29] transition-all duration-200 tracking-wider uppercase shadow-[0_4px_18px_rgba(120,29,41,0.08)] hover:shadow-[0_8px_25px_rgba(120,29,41,0.18)]"
               >
                 <span>LET'S CONNECT</span>
-                <ArrowUpRight className="w-4 h-4 stroke-[2.5] text-[#60A5FA]" />
+                <ArrowUpRight className="w-4 h-4 stroke-[2.5] text-[#781D29]" />
               </motion.a>
             </motion.div>
 
             {/* High-Contrast Bold Metric Pills */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.42 }}
-              className="pt-6 border-t border-white/[0.08] grid grid-cols-3 gap-4 max-w-md"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.55 }}
+              className="pt-6 border-t border-[#781D29]/10 grid grid-cols-3 gap-4 max-w-md"
             >
-              <div className="p-3 rounded-2xl bg-[#121624]/60 border border-white/[0.06]">
-                <span className="block text-[10px] font-mono uppercase tracking-wider text-[#64748B]">Focus</span>
-                <span className="text-sm font-bold text-white">Full-Stack & DSA</span>
-              </div>
-              <div className="p-3 rounded-2xl bg-[#121624]/60 border border-white/[0.06]">
-                <span className="block text-[10px] font-mono uppercase tracking-wider text-[#64748B]">Projects</span>
-                <span className="text-sm font-bold text-white">5 Key Builds</span>
-              </div>
-              <div className="p-3 rounded-2xl bg-[#121624]/60 border border-white/[0.06]">
-                <span className="block text-[10px] font-mono uppercase tracking-wider text-[#64748B]">Status</span>
-                <span className="text-sm font-bold text-[#60A5FA]">3rd Year Active</span>
-              </div>
+              <motion.div 
+                whileHover={{ y: -3, scale: 1.03 }}
+                className="p-3.5 rounded-2xl bg-[#FFFFFF] border border-[#781D29]/15 shadow-xs"
+              >
+                <span className="block text-[10px] font-mono uppercase tracking-wider text-[#8A777A] font-bold">Focus</span>
+                <span className="text-sm font-extrabold text-[#2D181C]">Full-Stack & DSA</span>
+              </motion.div>
+              <motion.div 
+                whileHover={{ y: -3, scale: 1.03 }}
+                className="p-3.5 rounded-2xl bg-[#FFFFFF] border border-[#781D29]/15 shadow-xs"
+              >
+                <span className="block text-[10px] font-mono uppercase tracking-wider text-[#8A777A] font-bold">Projects</span>
+                <span className="text-sm font-extrabold text-[#2D181C]">5 Key Builds</span>
+              </motion.div>
+              <motion.div 
+                whileHover={{ y: -3, scale: 1.03 }}
+                className="p-3.5 rounded-2xl bg-[#FDF2F4] border border-[#781D29]/25 shadow-xs"
+              >
+                <span className="block text-[10px] font-mono uppercase tracking-wider text-[#781D29] font-bold">Status</span>
+                <span className="text-sm font-extrabold text-[#781D29]">3rd Year Active</span>
+              </motion.div>
             </motion.div>
 
           </div>
 
-          {/* Right Column: Confident Interactive Builder Showcase */}
+          {/* Right Column: Confident Interactive 3D Parallax Builder Showcase */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-5 w-full flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
+            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, type: 'spring' }}
+            className="lg:col-span-5 w-full flex items-center justify-center perspective-1000"
           >
-            <div
+            <motion.div
               id="hero-abstract-art-composition"
-              className="relative w-full max-w-md aspect-square rounded-3xl bg-[#111422] border border-white/[0.1] p-7 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden flex flex-col justify-between hover:border-blue-500/40 transition-all duration-300 group"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              animate={{
+                rotateY: mousePosition.x * 16,
+                rotateX: -mousePosition.y * 16,
+              }}
+              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+              className="relative w-full max-w-md aspect-square rounded-3xl bg-[#FFFFFF] border-2 border-[#781D29]/15 p-7 sm:p-8 shadow-[0_20px_50px_rgba(120,29,41,0.12)] overflow-hidden flex flex-col justify-between hover:border-[#781D29]/40 hover:shadow-[0_25px_60px_rgba(120,29,41,0.22)] transition-colors duration-300 group"
             >
               {/* Background ambient accents */}
-              <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-[#3B82F6]/20 blur-2xl pointer-events-none" />
-              <div className="absolute -bottom-10 -left-10 w-44 h-44 rounded-full bg-[#8B5CF6]/20 blur-2xl pointer-events-none" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 rounded-full border border-dashed border-white/[0.08] pointer-events-none" />
+              <div className="absolute -top-12 -right-12 w-52 h-52 rounded-full bg-[#781D29]/10 blur-2xl pointer-events-none" />
+              <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-[#C0394B]/10 blur-2xl pointer-events-none" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-dashed border-[#781D29]/15 pointer-events-none" />
 
               {/* Composition Header */}
-              <div className="relative z-10 flex items-center justify-between pb-3 border-b border-white/[0.08]">
+              <div className="relative z-10 flex items-center justify-between pb-3 border-b border-[#781D29]/10">
                 <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#EF4444] shadow-[0_0_8px_rgba(239,68,68,0.6)]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#F59E0B] shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#10B981] shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
-                  <span className="ml-1.5 text-[11px] font-mono font-semibold uppercase tracking-wider text-[#94A3B8]">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#781D29] shadow-[0_0_8px_rgba(120,29,41,0.5)]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#C0394B] shadow-[0_0_8px_rgba(192,57,75,0.5)]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#10B981] shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+                  <span className="ml-1.5 text-[11px] font-mono font-bold uppercase tracking-wider text-[#6E5D61]">
                     Console · Builder
                   </span>
                 </div>
-                <span className="text-[11px] font-mono text-[#60A5FA] bg-blue-500/15 px-2.5 py-0.5 rounded-md border border-blue-500/30">
+                <span className="text-[11px] font-mono font-bold text-[#781D29] bg-[#FDF2F4] px-2.5 py-0.5 rounded-md border border-[#781D29]/25">
                   2024 – 2026
                 </span>
               </div>
 
-              {/* Central Abstract Interactive Visual Cards & Floating Action Labels with Animations */}
-              <div className="relative z-10 my-auto py-4 space-y-4">
+              {/* Central Abstract Interactive Visual Cards & Heavy Floating Action Labels */}
+              <div className="relative z-10 my-auto py-3 space-y-3.5">
                 
-                {/* Floating Action Pills with Motion Flotation */}
+                {/* Staggered Oscillating Floating Action Pills */}
                 <div className="flex flex-wrap items-center justify-center gap-2">
                   <motion.span
-                    animate={{ y: [0, -5, 0] }}
+                    animate={{ y: [0, -8, 0], rotate: [0, -2, 0] }}
                     transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
-                    whileHover={{ scale: 1.1 }}
-                    className="px-3 py-1 rounded-full bg-white text-[#090B10] text-[11px] font-black tracking-wider shadow-md cursor-default"
+                    whileHover={{ scale: 1.15, rotate: -4 }}
+                    className="px-3.5 py-1 rounded-full bg-[#781D29] text-white text-[11px] font-black tracking-wider shadow-[0_4px_15px_rgba(120,29,41,0.35)] cursor-default"
                   >
                     BUILD
                   </motion.span>
                   <motion.span
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-                    whileHover={{ scale: 1.1 }}
-                    className="px-3 py-1 rounded-full bg-[#3B82F6] text-white text-[11px] font-black tracking-wider shadow-[0_0_15px_rgba(59,130,246,0.5)] cursor-default"
+                    animate={{ y: [0, -9, 0], rotate: [0, 2, 0] }}
+                    transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+                    whileHover={{ scale: 1.15, rotate: 3 }}
+                    className="px-3.5 py-1 rounded-full bg-[#8D1B2D] text-white text-[11px] font-black tracking-wider shadow-[0_4px_15px_rgba(141,27,45,0.35)] cursor-default"
                   >
                     LEARN
                   </motion.span>
                   <motion.span
-                    animate={{ y: [0, -5, 0] }}
+                    animate={{ y: [0, -7, 0], rotate: [0, -2, 0] }}
                     transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
-                    whileHover={{ scale: 1.1 }}
-                    className="px-3 py-1 rounded-full bg-[#6366F1] text-white text-[11px] font-black tracking-wider shadow-[0_0_15px_rgba(99,102,241,0.4)] cursor-default"
+                    whileHover={{ scale: 1.15, rotate: -3 }}
+                    className="px-3.5 py-1 rounded-full bg-[#2D181C] text-white text-[11px] font-black tracking-wider shadow-[0_4px_15px_rgba(45,24,28,0.3)] cursor-default"
                   >
                     SOLVE
                   </motion.span>
                   <motion.span
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
-                    whileHover={{ scale: 1.1 }}
-                    className="px-3 py-1 rounded-full bg-[#EC4899] text-white text-[11px] font-black tracking-wider shadow-[0_0_15px_rgba(236,72,153,0.4)] cursor-default"
+                    animate={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
+                    transition={{ duration: 4.0, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
+                    whileHover={{ scale: 1.15, rotate: 4 }}
+                    className="px-3.5 py-1 rounded-full bg-[#C0394B] text-white text-[11px] font-black tracking-wider shadow-[0_4px_15px_rgba(192,57,75,0.35)] cursor-default"
                   >
                     CREATE
                   </motion.span>
                 </div>
 
                 {/* Central Canvas Card with Creative Graphic Elements */}
-                <div className="p-4 rounded-2xl bg-[#161B2C] border border-white/[0.08] space-y-3 shadow-xl group-hover:border-blue-500/30 transition-colors">
+                <div className="p-4 rounded-2xl bg-[#F8F3EF] border border-[#781D29]/15 space-y-3 shadow-inner group-hover:border-[#781D29]/35 transition-colors">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-semibold text-white flex items-center gap-1.5">
-                      <Sparkles className="w-3.5 h-3.5 text-[#3B82F6] animate-spin" style={{ animationDuration: '6s' }} />
+                    <span className="font-bold text-[#2D181C] flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-[#781D29] animate-spin" style={{ animationDuration: '6s' }} />
                       <span>Product Craft & Engineering</span>
                     </span>
-                    <span className="font-mono text-[10px] text-[#60A5FA]">Architecture</span>
+                    <span className="font-mono text-[10px] font-bold text-[#781D29]">Architecture</span>
                   </div>
 
                   {/* Visual Progress Steps: Concept -> Build -> Deliver */}
                   <div className="grid grid-cols-3 gap-2 text-center text-[11px]">
-                    <div className="p-2 rounded-xl bg-[#121624] border border-white/[0.06] hover:border-blue-500/40 transition-colors">
-                      <span className="block text-[9px] font-mono text-[#94A3B8] uppercase">Phase 01</span>
-                      <span className="font-bold text-white">Concept</span>
+                    <div className="p-2 rounded-xl bg-[#FFFFFF] border border-[#781D29]/10 hover:border-[#781D29]/30 transition-colors">
+                      <span className="block text-[9px] font-mono text-[#8A777A] uppercase font-bold">Phase 01</span>
+                      <span className="font-bold text-[#2D181C]">Concept</span>
                     </div>
-                    <div className="p-2 rounded-xl bg-gradient-to-br from-blue-900/40 to-blue-800/20 border border-blue-500/40 shadow-[0_0_15px_rgba(59,130,246,0.25)]">
-                      <span className="block text-[9px] font-mono text-[#60A5FA] uppercase">Phase 02</span>
-                      <span className="font-bold text-[#60A5FA]">Build</span>
+                    <div className="p-2 rounded-xl bg-gradient-to-br from-[#781D29] to-[#8D1B2D] text-white border border-[#781D29] shadow-[0_4px_15px_rgba(120,29,41,0.3)]">
+                      <span className="block text-[9px] font-mono text-[#FDF2F4] uppercase font-bold">Phase 02</span>
+                      <span className="font-bold text-white">Build</span>
                     </div>
-                    <div className="p-2 rounded-xl bg-[#121624] border border-white/[0.06] hover:border-blue-500/40 transition-colors">
-                      <span className="block text-[9px] font-mono text-[#94A3B8] uppercase">Phase 03</span>
-                      <span className="font-bold text-white">Deliver</span>
+                    <div className="p-2 rounded-xl bg-[#FFFFFF] border border-[#781D29]/10 hover:border-[#781D29]/30 transition-colors">
+                      <span className="block text-[9px] font-mono text-[#8A777A] uppercase font-bold">Phase 03</span>
+                      <span className="font-bold text-[#2D181C]">Deliver</span>
                     </div>
                   </div>
 
@@ -280,8 +335,8 @@ export const Hero: React.FC = () => {
                     {['C++', 'React', 'SQL', 'TypeScript', 'Node.js', 'Supabase'].map((tech) => (
                       <motion.span
                         key={tech}
-                        whileHover={{ scale: 1.08 }}
-                        className="px-2.5 py-0.5 rounded-lg bg-[#1D243A] border border-white/[0.08] text-[10px] font-mono font-medium text-[#CBD5E1] hover:border-blue-400/50 hover:text-white transition-colors cursor-default"
+                        whileHover={{ scale: 1.1, y: -1 }}
+                        className="px-2.5 py-0.5 rounded-lg bg-[#FFFFFF] border border-[#781D29]/15 text-[10px] font-mono font-bold text-[#4A3B3E] hover:border-[#781D29] hover:text-[#781D29] transition-colors cursor-default shadow-2xs"
                       >
                         {tech}
                       </motion.span>
@@ -292,15 +347,15 @@ export const Hero: React.FC = () => {
               </div>
 
               {/* Composition Footer Banner */}
-              <div className="relative z-10 pt-3 border-t border-white/[0.08] flex items-center justify-between text-xs text-[#94A3B8]">
-                <span className="flex items-center gap-1.5 font-medium">
+              <div className="relative z-10 pt-3 border-t border-[#781D29]/10 flex items-center justify-between text-xs text-[#6E5D61]">
+                <span className="flex items-center gap-1.5 font-semibold">
                   <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
                   Real Projects · Clean Foundations
                 </span>
-                <span className="font-mono text-[11px] text-[#60A5FA]">B.Tech Undergraduate</span>
+                <span className="font-mono text-[11px] text-[#781D29] font-bold">B.Tech Undergraduate</span>
               </div>
 
-            </div>
+            </motion.div>
           </motion.div>
 
         </div>

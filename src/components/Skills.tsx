@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Terminal, Globe, Database, Wrench, CheckCircle2, Cpu } from 'lucide-react';
+import { Terminal, Globe, Database, Wrench, CheckCircle2, Cpu, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SKILL_GROUPS } from '../data/portfolioData';
 
@@ -16,59 +16,52 @@ export const Skills: React.FC = () => {
   const getCategoryIcon = (cat: string) => {
     switch (cat) {
       case 'LANGUAGES':
-        return <Terminal className="w-5 h-5 text-[#60A5FA]" />;
+        return <Terminal className="w-5 h-5 text-[#781D29]" />;
       case 'WEB':
-        return <Globe className="w-5 h-5 text-[#A5B4FC]" />;
+        return <Globe className="w-5 h-5 text-[#8D1B2D]" />;
       case 'DATABASE':
-        return <Database className="w-5 h-5 text-[#FB923C]" />;
+        return <Database className="w-5 h-5 text-[#A22338]" />;
       case 'TOOLS':
-        return <Wrench className="w-5 h-5 text-[#34D399]" />;
+        return <Wrench className="w-5 h-5 text-[#C0394B]" />;
       default:
-        return <Cpu className="w-5 h-5 text-[#60A5FA]" />;
-    }
-  };
-
-  const getCategoryBadgeStyle = (cat: string) => {
-    switch (cat) {
-      case 'LANGUAGES':
-        return 'bg-blue-500/15 text-blue-400 border-blue-500/30';
-      case 'WEB':
-        return 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30';
-      case 'DATABASE':
-        return 'bg-amber-500/15 text-amber-400 border-amber-500/30';
-      case 'TOOLS':
-        return 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30';
-      default:
-        return 'bg-blue-500/15 text-blue-400 border-blue-500/30';
+        return <Cpu className="w-5 h-5 text-[#781D29]" />;
     }
   };
 
   return (
-    <section id="skills" className="py-24 md:py-32 border-b border-white/[0.08] relative overflow-hidden">
-      {/* Subtle background glow */}
-      <div className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-[#6366F1]/10 blur-[130px] pointer-events-none" />
+    <section id="skills" className="py-24 md:py-32 border-b border-[#781D29]/10 bg-[#FBF8F6] relative overflow-hidden">
+      {/* Subtle background ambient blob */}
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          x: [0, 20, 0],
+        }}
+        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-[#781D29]/10 blur-[130px] pointer-events-none"
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header with Numbered Label */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 sm:mb-16 gap-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider uppercase text-[#60A5FA] mb-3.5">
-              <span className="w-2 h-2 rounded-full bg-[#3B82F6] shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider uppercase text-[#781D29] mb-3.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#781D29] shadow-[0_0_10px_rgba(120,29,41,0.6)]" />
               <span>02 — SKILLS</span>
             </div>
             <h2
               id="skills-section-heading"
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight uppercase"
+              className="text-3xl sm:text-4xl md:text-5xl font-black text-[#2D181C] tracking-tight uppercase"
             >
               TOOLS I BUILD WITH
             </h2>
-            <p className="text-sm sm:text-base text-[#94A3B8] mt-2.5 max-w-2xl font-normal">
+            <div className="w-20 h-1 bg-[#781D29] mt-3 rounded-full" />
+            <p className="text-sm sm:text-base text-[#6E5D61] mt-3.5 max-w-2xl font-normal">
               Practical technologies I use across academic coursework, full-stack projects, and problem-solving practice.
             </p>
           </motion.div>
@@ -76,11 +69,11 @@ export const Skills: React.FC = () => {
           {/* Filter Pills with Animated Motion indicator */}
           <motion.div
             id="skills-category-filters"
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="flex flex-wrap items-center gap-1.5 bg-[#121624] p-1.5 rounded-full border border-white/[0.08] w-fit shadow-lg"
+            transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+            className="flex flex-wrap items-center gap-1.5 bg-[#FFFFFF] p-1.5 rounded-full border border-[#781D29]/15 w-fit shadow-md"
           >
             {categories.map((cat) => (
               <button
@@ -88,17 +81,17 @@ export const Skills: React.FC = () => {
                 id={`skill-filter-${cat.toLowerCase()}`}
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`relative px-4 py-2 rounded-full text-xs font-bold tracking-wider transition-all duration-200 ${
+                className={`relative px-4 py-2 rounded-full text-xs font-extrabold tracking-wider transition-all duration-200 ${
                   activeCategory === cat
-                    ? 'text-white'
-                    : 'text-[#94A3B8] hover:text-white hover:bg-white/[0.04]'
+                    ? 'text-white font-black'
+                    : 'text-[#6E5D61] hover:text-[#781D29] hover:bg-[#FDF2F4]'
                 }`}
               >
                 {activeCategory === cat && (
                   <motion.div
                     layoutId="activeSkillTab"
-                    className="absolute inset-0 bg-gradient-to-r from-[#3B82F6] to-[#2563EB] rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)] -z-10"
-                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    className="absolute inset-0 bg-gradient-to-r from-[#781D29] to-[#8D1B2D] rounded-full shadow-[0_4px_15px_rgba(120,29,41,0.35)] -z-10"
+                    transition={{ type: 'spring', stiffness: 450, damping: 30 }}
                   />
                 )}
                 {cat}
@@ -107,7 +100,7 @@ export const Skills: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Categories Bento Grid with Staggered Animations */}
+        {/* Categories Bento Grid with Elastic Spring Overshoot Entrance */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           <AnimatePresence mode="popLayout">
             {displayedGroups.map((group, gIdx) => (
@@ -115,60 +108,80 @@ export const Skills: React.FC = () => {
                 key={group.category}
                 layout
                 id={`skills-group-${group.category.toLowerCase()}`}
-                initial={{ opacity: 0, scale: 0.96, y: 20 }}
+                initial={{ opacity: 0, scale: 0.85, y: 35 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4, delay: gIdx * 0.05 }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="p-7 sm:p-8 rounded-3xl bg-[#111422] border border-white/[0.08] shadow-[0_10px_30px_rgba(0,0,0,0.4)] hover:border-blue-500/40 hover:shadow-[0_15px_45px_rgba(59,130,246,0.15)] transition-all duration-300 flex flex-col justify-between group"
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 280,
+                  damping: 20,
+                  delay: gIdx * 0.08,
+                }}
+                whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                className="p-7 sm:p-8 rounded-3xl bg-[#FFFFFF] border border-[#781D29]/15 shadow-[0_10px_35px_rgba(120,29,41,0.06)] hover:border-[#781D29]/40 hover:shadow-[0_15px_45px_rgba(120,29,41,0.14)] transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   {/* Group Title Bar */}
-                  <div className="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-5">
+                  <div className="flex items-center justify-between pb-4 border-b border-[#781D29]/10 mb-5">
                     <div className="flex items-center gap-3.5">
-                      <div className="w-11 h-11 rounded-2xl bg-[#171C2E] border border-white/[0.08] flex items-center justify-center group-hover:scale-105 group-hover:border-blue-500/40 transition-all shadow-inner">
+                      <div className="w-12 h-12 rounded-2xl bg-[#FDF2F4] border border-[#781D29]/20 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all shadow-xs">
                         {getCategoryIcon(group.category)}
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-white tracking-tight">
+                        <h3 className="text-xl font-extrabold text-[#2D181C] tracking-tight">
                           {group.category}
                         </h3>
-                        <span className="text-[11px] font-mono text-[#94A3B8]">
-                          {group.skills.length} Technologies
+                        <span className="text-[11px] font-mono text-[#8A777A] font-medium">
+                          {group.skills.length} Core Technologies
                         </span>
                       </div>
                     </div>
 
-                    <span
-                      className={`text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${getCategoryBadgeStyle(
-                        group.category
-                      )}`}
-                    >
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full border bg-[#FDF2F4] text-[#781D29] border-[#781D29]/25">
                       Active Stack
                     </span>
                   </div>
 
-                  {/* Skill Pills Container with Interactive Micro-Animations */}
+                  {/* Skill Pills Container with Interactive Elastic Wobble */}
                   <div className="flex flex-wrap gap-2.5">
-                    {group.skills.map((skill) => (
+                    {group.skills.map((skill, sIdx) => (
                       <motion.div
                         key={skill}
                         id={`skill-pill-${skill.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.96 }}
-                        className="px-4 py-2.5 rounded-xl bg-[#171C2E] border border-white/[0.06] text-xs sm:text-sm font-semibold text-[#E2E8F0] hover:bg-[#1E243D] hover:text-white hover:border-blue-400/50 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all duration-150 cursor-default flex items-center gap-2 group/pill"
+                        whileHover={{
+                          scale: 1.1,
+                          y: -3,
+                          rotate: sIdx % 2 === 0 ? 2 : -2,
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-4 py-2.5 rounded-xl bg-[#F8F3EF] border border-[#781D29]/10 text-xs sm:text-sm font-bold text-[#2D181C] hover:bg-[#FDF2F4] hover:text-[#781D29] hover:border-[#781D29]/40 hover:shadow-[0_4px_15px_rgba(120,29,41,0.15)] transition-all duration-150 cursor-default flex items-center gap-2 group/pill"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] shadow-[0_0_6px_rgba(59,130,246,0.9)] group-hover/pill:scale-125 transition-transform" />
+                        <span className="w-2 h-2 rounded-full bg-[#781D29] shadow-[0_0_6px_rgba(120,29,41,0.8)] group-hover/pill:scale-125 transition-transform" />
                         <span>{skill}</span>
                       </motion.div>
                     ))}
                   </div>
                 </div>
 
-                {/* Bottom Honest Student Note */}
-                <div className="mt-6 pt-4 border-t border-white/[0.08] flex items-center gap-2.5 text-xs text-[#94A3B8]">
-                  <CheckCircle2 className="w-4 h-4 text-[#3B82F6] shrink-0" />
-                  <span>Applied through hands-on project implementations and problem solving</span>
+                {/* Bottom Honest Student Note & Animated Progress Indicator */}
+                <div className="mt-6 pt-4 border-t border-[#781D29]/10 space-y-2">
+                  <div className="flex items-center justify-between text-xs text-[#6E5D61]">
+                    <span className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#781D29] shrink-0" />
+                      <span>Applied through coursework & projects</span>
+                    </span>
+                    <span className="font-mono text-[11px] font-bold text-[#781D29]">100% Practical</span>
+                  </div>
+                  {/* Subtle animated bar */}
+                  <div className="w-full h-1.5 bg-[#F4EFEB] rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: '100%' }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, delay: 0.2 }}
+                      className="h-full bg-gradient-to-r from-[#781D29] to-[#C0394B] rounded-full"
+                    />
+                  </div>
                 </div>
               </motion.div>
             ))}

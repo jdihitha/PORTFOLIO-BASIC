@@ -65,7 +65,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'freshverse',
     number: '01',
-    title: 'FreshVerse',
+    title: 'FreshVerse — COMPLETED',
     tagline: 'Connected Food & Grocery Supply Ecosystem Platform',
     category: 'Full-Stack',
     description: 'A full-stack platform designed around a connected food and grocery supply ecosystem involving customers, suppliers, inventory management, orders, deliveries, ratings, complaints, and notifications.',
@@ -78,9 +78,9 @@ export const PROJECTS: Project[] = [
       'Real-time notifications for status transitions from dispatch to doorstep delivery',
     ],
     technologies: ['React', 'JavaScript/TypeScript', 'Supabase', 'SQL'],
-    liveUrl: '', // placeholder
+    liveUrl: 'https://freshverse-vegies.vercel.app/',
     githubUrl: '', // placeholder
-    statusBadge: 'Full-Stack Architecture',
+    statusBadge: 'COMPLETED',
   },
   {
     id: 'erpatu',
@@ -123,9 +123,9 @@ export const PROJECTS: Project[] = [
     statusBadge: 'Client / Business Web Presence',
   },
   {
-    id: 'judam',
+    id: 'yaadrakho',
     number: '04',
-    title: 'JUDAM',
+    title: 'YAADRAKHO — COMPLETED',
     tagline: 'Festive Memory Challenge Game Inspired by Ganesh Chaturthi',
     category: 'Interactive / Game',
     description: 'A festive memory challenge game inspired by Ganesh Chaturthi celebrations where players watch, remember, and find matching cards across progressively challenging rounds.',
@@ -138,9 +138,9 @@ export const PROJECTS: Project[] = [
       'Restart and high-score retention using browser session state',
     ],
     technologies: ['React', 'JavaScript', 'CSS Animations', 'Game State Logic'],
-    liveUrl: '',
+    liveUrl: 'https://bossyaadrakho-game.vercel.app/',
     githubUrl: '',
-    statusBadge: 'Interactive Game Logic',
+    statusBadge: 'COMPLETED',
   },
   {
     id: 'counter-app',
